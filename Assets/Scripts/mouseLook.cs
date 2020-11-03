@@ -12,7 +12,7 @@ public class mouseLook : MonoBehaviour
     void Start()
     {
         //lock and hide mouse
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
