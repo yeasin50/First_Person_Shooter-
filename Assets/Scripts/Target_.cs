@@ -5,6 +5,7 @@ using UnityEngine;
 public class Target_ : MonoBehaviour
 {
     public float health = 50f;
+   
 
     public void TakeDamage(float amount){
         health -=amount;
@@ -13,7 +14,10 @@ public class Target_ : MonoBehaviour
             DIE();
         }
     }
+
     void DIE(){
         Destroy(gameObject);
     }
+
+   
 }
