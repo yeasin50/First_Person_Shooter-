@@ -43,7 +43,7 @@ public class shootArea : MonoBehaviour
 
         muzzleFlesh.Play();
 
-        RaycastHit hit ;
+        // RaycastHit hit ;
         //hit something or not
         // if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range )){
         //     Debug.Log(hit.transform.name);

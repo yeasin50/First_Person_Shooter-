@@ -10,15 +10,40 @@ public class gun : MonoBehaviour
     public ParticleSystem muzzleFlesh;
     public GameObject impactEffects;
 
+    public GameObject projectile;
+    public Transform firePoint;
+    private Vector3 destination;
+    public float projectTileSpeed = 50f;
+
 
     private float nextTimeToFire = 0f;
     // Update is called once per frame
+
     void Update()
     {
         if(Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire){
             nextTimeToFire = Time.time + 1f/fireRate;
-            Shoot();
+            // Shoot();
+            ShootProjectile();
         }
+    }
+
+    void ShootProjectile(){
+        Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit ;
+
+        if(Physics.Raycast(ray, out hit)){
+            destination = hit.point;
+        }else{
+            destination = ray.GetPoint(1000);
+        }
+
+        InstantiateProjectile();
+    }
+
+    void InstantiateProjectile(){
+        var projectileObj =  Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
+            projectileObj.GetComponent<Rigidbody>().velocity = (destination- firePoint.position).normalized *projectTileSpeed;
     }
 
     void Shoot(){
